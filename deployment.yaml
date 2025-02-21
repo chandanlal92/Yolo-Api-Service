@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yolo-api-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: yolo-api-service
+  template:
+    metadata:
+      labels:
+        app: yolo-api-service
+    spec:
+      containers:
+      - name: yolo-api-service
+        image: chandanlal/yolo-api-service:1.0
+        ports:
+        - containerPort: 5000
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: aws-access-key-id
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: aws-secret-access-key
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: yolo-api-service
+spec:
+  selector:
+    app: yolo-api-service
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5000
+  type: NodePort
