@@ -1,12 +1,13 @@
 import sys
 import os
+
 # Add the project root directory to the Python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-import pytest
 import pytest
 from Object_detection_api import download_image_from_s3, draw_bounding_boxes
 import cv2
 import numpy as np
+
 
 def test_draw_bounding_boxes():
     """Test the draw_bounding_boxes function."""
@@ -35,8 +36,10 @@ def test_draw_bounding_boxes():
     assert output_image is not None
     assert output_image.shape == image.shape
 
+
 def test_download_image_from_s3(monkeypatch):
     """Test the download_image_from_s3 function."""
+
     # Mock the S3 client
     class MockS3Client:
         def get_object(self, Bucket, Key):
@@ -49,5 +52,7 @@ def test_download_image_from_s3(monkeypatch):
     monkeypatch.setattr("boto3.client", lambda *args, **kwargs: MockS3Client())
 
     # Test the function
-    image = download_image_from_s3(os.getenv("YOLO-BUCKET-NAME"), os.getenv("YOLO_IMAGE_FILE_NAME"))
+    image = download_image_from_s3(
+        os.getenv("YOLO-BUCKET-NAME"), os.getenv("YOLO_IMAGE_FILE_NAME")
+    )
     assert image is not None

@@ -1,11 +1,13 @@
-import pytest
 import os
+import pytest
+
+
 def test_process_image_endpoint(client):
     """Test the /process-image endpoint."""
     # Mock the request payload
     payload = {
         "bucket_name": os.getenv("YOLO-BUCKET-NAME"),
-        "object_key": os.getenv("YOLO_IMAGE_FILE_NAME")
+        "object_key": os.getenv("YOLO_IMAGE_FILE_NAME"),
     }
 
     # Send a POST request to the endpoint
@@ -16,6 +18,7 @@ def test_process_image_endpoint(client):
 
     # Check the response content type
     assert response.content_type == "image/jpeg"
+
 
 def test_process_image_endpoint_missing_parameters(client):
     """Test the /process-image endpoint with missing parameters."""
