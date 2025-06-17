@@ -1,10 +1,11 @@
 import pytest
+import os
 def test_process_image_endpoint(client):
     """Test the /process-image endpoint."""
     # Mock the request payload
     payload = {
-        "bucket_name": "test-yolo-chandan",
-        "object_key": "Test_Dog.jpeg"
+        "bucket_name": os.getenv("YOLO-BUCKET-NAME"),
+        "object_key": os.getenv("YOLO_IMAGE_FILE_NAME")
     }
 
     # Send a POST request to the endpoint

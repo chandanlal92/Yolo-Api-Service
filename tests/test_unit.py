@@ -49,5 +49,5 @@ def test_download_image_from_s3(monkeypatch):
     monkeypatch.setattr("boto3.client", lambda *args, **kwargs: MockS3Client())
 
     # Test the function
-    image = download_image_from_s3("test-yolo-chandan", "Test_Dog.jpeg")
+    image = download_image_from_s3(os.getenv("YOLO-BUCKET-NAME"), os.getenv("YOLO_IMAGE_FILE_NAME"))
     assert image is not None
