@@ -2,11 +2,15 @@ import sys
 import os
 
 # Add the project root directory to the Python path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-import pytest
+sys.path.insert(
+    0,
+    os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "..")
+    ),
+)
 from Object_detection_api import download_image_from_s3, draw_bounding_boxes
-import cv2
 import numpy as np
+from io import BytesIO
 
 
 def test_draw_bounding_boxes():

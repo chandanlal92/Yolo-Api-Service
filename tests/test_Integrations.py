@@ -1,5 +1,4 @@
 import os
-import pytest
 
 
 def test_process_image_endpoint(client):
