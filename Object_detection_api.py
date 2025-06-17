@@ -64,7 +64,9 @@ def process_image():
     object_key = data.get("object_key")
 
     if not bucket_name or not object_key:
-        return jsonify({"error": "bucket_name and object_key are required"}), 400
+        return jsonify(
+            {"error": "bucket_name and object_key are required"}
+        ), 400
 
     try:
         # Download image from S3
