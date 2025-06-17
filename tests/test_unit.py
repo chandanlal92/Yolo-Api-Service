@@ -13,6 +13,7 @@ sys.path.insert(
 )
 from Object_detection_api import download_image_from_s3, draw_bounding_boxes
 
+
 def test_draw_bounding_boxes():
     """Test the draw_bounding_boxes function."""
     # Create a blank image
