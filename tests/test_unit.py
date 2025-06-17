@@ -1,5 +1,8 @@
 import sys
 import os
+import numpy as np
+from io import BytesIO
+
 
 # Add the project root directory to the Python path
 sys.path.insert(
@@ -9,9 +12,6 @@ sys.path.insert(
     ),
 )
 from Object_detection_api import download_image_from_s3, draw_bounding_boxes
-import numpy as np
-from io import BytesIO
-
 
 def test_draw_bounding_boxes():
     """Test the draw_bounding_boxes function."""

@@ -42,8 +42,13 @@ def draw_bounding_boxes(image, results):
             color = (0, 255, 0)  # Green color for bounding boxes
             cv2.rectangle(image, (x1, y1), (x2, y2), color, 2)
             cv2.putText(
-                image, label, (x1, y1 - 10), 
-                cv2.FONT_HERSHEY_SIMPLEX, 0.9, color, 2
+                image,
+                label,
+                (x1, y1 - 10),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.9,
+                color,
+                2,
             )
     return image
 
@@ -51,7 +56,7 @@ def draw_bounding_boxes(image, results):
 @app.route("/process-image", methods=["POST"])
 def process_image():
     """
-    API endpoint to process an image from S3 and 
+    API endpoint to process an image from S3 and
     return the image with bounding boxes.
     """
     data = request.json
@@ -59,9 +64,7 @@ def process_image():
     object_key = data.get("object_key")
 
     if not bucket_name or not object_key:
-        return jsonify({
-            "error": "bucket_name and object_key are required"
-        }), 400
+        return jsonify({"error": "bucket_name and object_key are required"}), 400
 
     try:
         # Download image from S3
