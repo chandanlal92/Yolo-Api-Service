@@ -1,0 +1,7 @@
+flask
+boto3
+ultralytics
+opencv-python-headless
+requests
+numpy
+python-dotenv
